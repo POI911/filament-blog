@@ -9,6 +9,7 @@ use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -24,6 +25,14 @@ class PostResource extends Resource
     {
         return $form
         ->schema([
+            Forms\Components\TextInput::make('title')
+            ->maxLength(25)
+            ->required(),
+
+            Forms\Components\TextArea::make('content')
+            ->required()
+            ->maxLength(255),
+
 
         ]);
     }
@@ -32,13 +41,22 @@ class PostResource extends Resource
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('index')
+                    ->rowIndex(),
+
+                TextColumn::make('title')->label('Post Title'),
+
+                TextColumn::make('content')->label('Post Content')
+                   ->limit(30),
+
+                TextColumn::make('user.name')->label('Owner'),
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
