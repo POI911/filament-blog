@@ -43,9 +43,17 @@ class UserResource extends Resource
     {
         return $table
             ->columns([
+                TextColumn::make('#')
+                ->rowIndex(),
                 TextColumn::make('name'),
                 TextColumn::make('email'),
-                TextColumn::make('role')->default('user'),
+                TextColumn::make('role')
+                ->badge()
+                ->color(fn (string $state): string => match($state) {
+                  'admin' => 'success',
+                  'user' => 'primary',
+                }),
+                TextColumn::make('created_at')->dateTime('Y-m-d'),
             ])
             ->filters([
                 //
