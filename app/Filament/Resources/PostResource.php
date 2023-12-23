@@ -44,12 +44,18 @@ class PostResource extends Resource
                 TextColumn::make('#')
                     ->rowIndex(),
 
-                TextColumn::make('title')->label('Post Title'),
+                TextColumn::make('title')
+                ->label('Post Title'),
 
-                TextColumn::make('content')->label('Post Content')
-                   ->limit(30),
+                TextColumn::make('content')
+                ->label('Post Content')
+                ->limit(30),
 
-                TextColumn::make('user.name')->label('Owner'),
+                TextColumn::make('user.name')
+                ->label('Owner'),
+
+                TextColumn::make('created_at')
+                ->dateTime('Y-m-d'),
             ])
             ->filters([
                 //
