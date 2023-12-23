@@ -13,6 +13,10 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\TextArea;
+use App\Models\Post;
 
 class CommentResource extends Resource
 {
@@ -21,9 +25,22 @@ class CommentResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function form(Form $form): Form
-    {
+    { // admin can create a comment on any post from his dashboard for now.
         return $form
             ->schema([
+
+
+                Select::make('post_id')
+                ->label('Choose Post')
+                ->options(Post::all()->pluck('title', 'id'))
+                ->searchable()
+                ->required(),
+
+                TextArea::make('text')
+                ->label('Comment')
+                ->required()
+                ->maxLength(100),
+
 
             ]);
     }
@@ -34,7 +51,20 @@ class CommentResource extends Resource
             ->columns([
                 TextColumn::make('#')
                 ->rowIndex(),
-                TextColumn::make('post.title')->label('Post Title')
+
+                TextColumn::make('post.title')
+                ->label('Post Title'),
+
+                TextColumn::make('text')
+                ->label('Comment'),
+
+                TextColumn::make('user.name')
+                ->label('Owner'),
+
+                TextColumn::make('created_at')
+                ->dateTime('Y-m-d'),
+
+
             ])
             ->filters([
                 //
