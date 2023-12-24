@@ -22,7 +22,8 @@ class CommentResource extends Resource
 {
     protected static ?string $model = Comment::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-m-chat-bubble-left';
+    protected static ?int $navigationSort = 3;
 
     public static function form(Form $form): Form
     { // admin can create a comment on any post from his dashboard for now.
@@ -62,7 +63,7 @@ class CommentResource extends Resource
                 ->label('Owner'),
 
                 TextColumn::make('created_at')
-                ->dateTime('Y-m-d'),
+                ->dateTime('Y-m-d')
 
 
             ])
