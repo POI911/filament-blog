@@ -54,6 +54,10 @@ class User extends Authenticatable implements FilamentUser
             return $this->isAdmin();
         }
 
+        if($panel->getId() === 'app'){ // admins can't access the user's dashboard
+            return ! $this->isAdmin();
+        }
+
         return true;
     }
 
