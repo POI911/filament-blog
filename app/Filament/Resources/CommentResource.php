@@ -56,11 +56,16 @@ class CommentResource extends Resource
                 TextColumn::make('post.title')
                 ->label('Post Title'),
 
+                TextColumn::make('post.user.name')
+                    ->label('Post Author'),
+
                 TextColumn::make('text')
                 ->label('Comment'),
 
                 TextColumn::make('user.name')
-                ->label('Owner'),
+                ->label('Comment Author'),
+
+
 
                 TextColumn::make('created_at')
                 ->dateTime('Y-m-d')
@@ -72,6 +77,7 @@ class CommentResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
