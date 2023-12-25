@@ -4,26 +4,33 @@
 
     <link href='{{ asset('posts/posts.css') }}' rel='stylesheet' type='text/css'>
 
-      <section id="postIndex" class="widthWrapper">
+    <div >
 
+        <div class="card">
+          <div class="user">
+            <div class="profile">
+              <img src="https://placehold.co/50" alt="avatar" class="ava">
+              <div class="username">
+                <h3 class="name">{{ $this->record->user->name }}</h3>
 
-        <article class="mb-4">
+              </div>
+            </div>
+            <i class="fa-brands fa-twitter icon"></i>
+          </div>
+          <div class="twitt">
+            <p>{{ $this->record->content }}<span>
 
-            <a>
-            <span>Author: {{ $this->record->user->name }}</span>
-              <h2>{{ $this->record->title }}</h2>
-              <p>{{ $this->record->content }}</p>
-            </a>
-          </article>
+              </span>
+            </p>
+          </div>
+          <div class="insight">
 
-          <ul>
-            @foreach($this->record->comments as $comment)
-            <li>{{ $comment->user->name }}: {{$comment->text }} </li>
-            @endforeach
-          </ul>
-
-
-      </section>
+            <div class="created">
+              <p>{{ $this->record->created_at }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
 
     </x-filament-panels::page>
 
