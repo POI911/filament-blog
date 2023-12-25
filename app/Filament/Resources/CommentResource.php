@@ -30,13 +30,6 @@ class CommentResource extends Resource
         return $form
             ->schema([
 
-
-                Select::make('post_id')
-                ->label('Choose Post')
-                ->options(Post::all()->pluck('title', 'id'))
-                ->searchable()
-                ->required(),
-
                 TextArea::make('text')
                 ->label('Comment')
                 ->required()
