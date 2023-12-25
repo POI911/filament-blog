@@ -19,8 +19,9 @@ class CreatePost extends CreateRecord
 }
 
 
-    protected function handleRecordCreation(array $data): Model
-    {
-        return static::getModel()::create($data);
-    }
+
+    protected function getRedirectUrl(): string
+{
+    return $this->getResource()::getUrl('index');
+}
 }
