@@ -13,17 +13,4 @@ class ListComments extends ListRecords
 {
     protected static string $resource = CommentResource::class;
 
-
-    public function getTabs(): array
-{
-    return [
-        'All Comments' => Tab::make()
-        ->badge(Comment::query()->count()),
-        'Admin Comments' => Tab::make()
-        ->badge(Comment::query()->where('user_id', auth()->user()->id)->count())
-            ->modifyQueryUsing(fn (Builder $query) => $query->where('user_id', auth()->user()->id)),
-
-    ];
-}
-
 }

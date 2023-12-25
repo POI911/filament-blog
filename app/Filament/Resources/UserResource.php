@@ -53,7 +53,8 @@ class UserResource extends Resource
                 ->color(fn (string $state): string => match($state) {
                   'admin' => 'success',
                   'user' => 'primary',
-                }),
+                })
+                ->default('user'),
                 TextColumn::make('created_at')->dateTime('Y-m-d'),
             ])
             ->filters([
@@ -81,7 +82,6 @@ class UserResource extends Resource
     {
         return [
             'index' => Pages\ListUsers::route('/'),
-            'create' => Pages\CreateUser::route('/create'),
             'edit' => Pages\EditUser::route('/{record}/edit'),
         ];
     }
