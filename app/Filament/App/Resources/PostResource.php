@@ -84,6 +84,7 @@ class PostResource extends Resource
             'create' =>  Pages\CreatePost::route('/create'),
             'edit' => Pages\EditPost::route('/{record}/edit'),
             'timeline' => Pages\Posts::route('/all_posts'),
+            'view'  => Pages\ViewPost::route('/{record}/view')
 
         ];
     }
