@@ -20,11 +20,16 @@ class CommentResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    protected static ?string $modelLabel = 'My Comments';
+
+    protected static ?int $navigationSort = 2;
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                //
+                Forms\Components\TextArea::make('text')
+                ->required()
+                ->maxLength(255),
             ]);
     }
 
@@ -50,6 +55,7 @@ class CommentResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->modifyQueryUsing(fn (Builder $query) => $query->where('user_id', auth()->user()->id))
             ->bulkActions([
@@ -69,7 +75,7 @@ class CommentResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListComments::route('/'),
+            'index' => Pages\ListComments::route('/my_comments'),
             'create' => Pages\CreateComment::route('/create'),
             'edit' => Pages\EditComment::route('/{record}/edit'),
         ];
