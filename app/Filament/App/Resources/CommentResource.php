@@ -18,7 +18,7 @@ class CommentResource extends Resource
 {
     protected static ?string $model = Comment::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-m-chat-bubble-left';
 
     protected static ?string $modelLabel = 'My Comments';
 
@@ -42,6 +42,9 @@ class CommentResource extends Resource
 
         TextColumn::make('post.title')
         ->label('Post Title'),
+
+        TextColumn::make('post.user.name')
+        ->label('Post Author'),
 
         TextColumn::make('text')
         ->label('comment')
