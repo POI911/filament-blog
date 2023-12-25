@@ -81,8 +81,9 @@ class PostResource extends Resource
     {
         return [
             'index' => Pages\ListPosts::route('/my_posts'),
-            'create' => Pages\CreatePost::route('/create'),
+            'create' =>  Pages\CreatePost::route('/create'),
             'edit' => Pages\EditPost::route('/{record}/edit'),
+            'timeline' => Pages\Posts::route('/all_posts'),
 
         ];
     }

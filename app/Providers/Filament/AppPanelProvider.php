@@ -2,6 +2,9 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\App\Resources\CommentResource;
+use App\Filament\App\Resources\PostResource;
+
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
@@ -17,6 +20,9 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Filament\Navigation\NavigationItem;
+
+
 
 class AppPanelProvider extends PanelProvider
 {
@@ -26,6 +32,7 @@ class AppPanelProvider extends PanelProvider
             ->id('app')
             ->path('')
             ->login()
+            ->profile()
             ->spa()
             ->registration()
             ->colors([
@@ -41,6 +48,17 @@ class AppPanelProvider extends PanelProvider
                 Widgets\AccountWidget::class,
                 Widgets\FilamentInfoWidget::class,
             ])
+
+
+            ->navigationItems([
+                NavigationItem::make('Timeline')
+
+                    ->url(fn (): string => PostResource::getUrl('timeline'))
+                    ->icon('heroicon-o-presentation-chart-line')
+                    ->isActiveWhen(fn () => request()->url() === PostResource::getUrl('timeline'))
+                    ->sort(1),
+            ])
+
             ->middleware([
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,
