@@ -6,13 +6,15 @@ to run this project
 4. `php artisan migrate --seed`
 
 
-Admin Login:
-Route: /admin/login
-email: admin@example.com
-password: 12345678
+Admin Login: 
+* Route: /admin/login
+* email: admin@example.com
+* password: 12345678
 
 
 User Login
-Route: /login
-email: user@example.com
-password: 12345678
+
+* Route: /login
+* email: user@example.com
+* password: 12345678
+ 
