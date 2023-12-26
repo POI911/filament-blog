@@ -5,7 +5,7 @@ namespace App\Filament\App\Resources\PostResource\Pages;
 use App\Filament\App\Resources\PostResource;
 use App\Models\Post;
 use Filament\Resources\Pages\Page;
-
+use Filament\Actions;
 class Posts extends Page
 {
     protected static string $resource = PostResource::class;
@@ -15,7 +15,7 @@ class Posts extends Page
     public $records;
 
     public function mount(): void
-{
+    {
     $this->records = Post::get();
-}
+    }
 }

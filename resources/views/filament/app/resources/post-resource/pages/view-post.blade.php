@@ -28,6 +28,10 @@
             <div class="created">
               <p>{{ $this->record->created_at }}</p>
             </div>
+
+            <div>
+                {{ $this->writeComment() }}
+            </div>
           </div>
         </div>
       </div>
