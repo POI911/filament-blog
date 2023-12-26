@@ -23,7 +23,7 @@ class ViewPost extends ViewRecord
 {
     return Actions\CreateAction::make('writeComment')
         ->model(Comment::class)
-        ->label('New Comment')
+        ->label('Write Comment')
         ->mutateFormDataUsing(function (array $data): array {
             $data['user_id'] = auth()->id();
             $data['post_id'] = $this->record->id;

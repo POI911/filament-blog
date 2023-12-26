@@ -5,7 +5,6 @@
     <link href='{{ asset('posts/posts.css') }}' rel='stylesheet' type='text/css'>
 
     <div >
-
         <div class="card">
           <div class="user">
             <div class="profile">
@@ -29,11 +28,20 @@
               <p>{{ $this->record->created_at }}</p>
             </div>
 
-            <div>
+            <div >
                 {{ $this->writeComment() }}
             </div>
           </div>
         </div>
+      </div>
+
+      <div>
+        <h1 class="mb-4">Post's Comments</h1>
+        <ul>
+        @foreach ($this->record->comments as $comment )
+        <li>{{ $comment->text }} <span class="mx-4 text-secondary">------ {{ $comment->user->name }} </span></li>
+        @endforeach
+        </ul>
       </div>
 
     </x-filament-panels::page>
